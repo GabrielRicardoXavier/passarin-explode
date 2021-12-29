@@ -8,6 +8,11 @@ var chao, plataforma;
 var caixinha1, caixinha2, caixinha3, caixinha4, caixinha5;
 var porquin1, porquin2;
 var tronco1, tronco2, tronco3, tronco4;
+var fundo;
+
+function preload() {
+  fundo = loadImage("sprites/bg.png");
+}
 
 function setup() {
   createCanvas(1200, 400);
@@ -36,7 +41,7 @@ function setup() {
 }
 
 function draw() {
-  background("black");
+  background(fundo);
 
   Engine.update(motorDaFisica);
 

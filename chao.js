@@ -8,10 +8,13 @@ class Chao {
           World.add(mundo, this.chao);
           this.altura = altura
           this.largura = largura
+          this.imagem = loadImage("sprites/ground.png")
     }
         desenha(){
+            push();
             fill("brown");
-            rectMode(CENTER);
-            rect(this.chao.position.x, this.chao.position.y, this.largura, this.altura);
+            imageMode(CENTER);
+            image(this.imagem,this.chao.position.x, this.chao.position.y, this.largura, this.altura);
+            pop();
         }
 }
