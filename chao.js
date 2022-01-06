@@ -8,11 +8,11 @@ class Chao {
           World.add(mundo, this.chao);
           this.altura = altura
           this.largura = largura
-          this.imagem = loadImage("sprites/ground.png")
+          this.imagem = loadImage("sprites/base.png")
     }
         desenha(){
             push();
-            fill("brown");
+            
             imageMode(CENTER);
             image(this.imagem,this.chao.position.x, this.chao.position.y, this.largura, this.altura);
             pop();
