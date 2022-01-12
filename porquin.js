@@ -5,8 +5,8 @@ class Porco extends Base {
             'friction':0.3,
             'density':0.5
         }
+
         super(x,y,50,50,opcoes);
         this.imagem = loadImage("sprites/enemy.png")
     }
-
 }

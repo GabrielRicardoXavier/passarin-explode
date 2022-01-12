@@ -5,14 +5,15 @@ class Passarinho extends Base {
             'friction':1.0,
             'density':1.5
         }
+        
         super(x,y,50,50,opcoes)
         this.imagem = loadImage("sprites/bird.png")
     }
 
     desenha(){
         var posicao = this.corpo.position
-        posicao.x = mouseX;
-        posicao.y = mouseY;
+        //posicao.x = mouseX;
+        //posicao.y = mouseY;
         super.desenha()
     }
 }

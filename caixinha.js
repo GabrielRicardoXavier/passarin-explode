@@ -5,6 +5,7 @@ class Caixinha extends Base {
             'friction':1.0,
             'density':1.0
         }
+        
         super(x,y,largura,altura,opcoes);
         this.imagem = loadImage("sprites/wood1.png")
     }

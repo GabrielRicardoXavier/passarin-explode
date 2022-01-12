@@ -5,6 +5,7 @@ class Tronquin extends Base{
             'friction':1.0,
             'density':1.0
         }
+        
         super(x,y,20,altura,opcoes)
         this.imagem = loadImage("sprites/wood2.png")
         Matter.Body.setAngle(this.corpo,angulo);

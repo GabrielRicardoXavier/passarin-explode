@@ -1,6 +1,5 @@
 class Base {
     constructor(x,y,largura,altura,opcoes) {
-
         this.corpo = Bodies.rectangle(x,y,largura,altura,opcoes)
         this.largura = largura
         this.altura = altura
