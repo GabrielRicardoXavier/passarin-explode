@@ -10,10 +10,17 @@ var caixinha1, caixinha2, caixinha3, caixinha4, caixinha5;
 var porquin1, porquin2;
 var tronco1, tronco2, tronco3, tronco4;
 var fundo;
+var fundoImagem = "sprites/bg.png"
 var estilingue;
+var pontuacao = 0
+var fundoReserva
+var corPontuacao = "black"
+
+var estadoDoJogo = "Comeco"
 
 function preload() {
-    fundo = loadImage("sprites/bg.png");
+    fundin()
+    fundoReserva = loadImage(fundoImagem)
 }
 
 function setup() {
@@ -22,7 +29,7 @@ function setup() {
     motorDaFisica = Engine.create();
     mundo = motorDaFisica.world;
 
-    passarinho = new Passarinho(100,100);
+    passarinho = new Passarinho(370,230);
 
     chao = new Chao(600,585,1200,30);
     plataforma = new Chao(200,500,400,200);
@@ -45,7 +52,17 @@ function setup() {
 }
 
 function draw() {
-    background(fundo);
+    if(fundo){
+        background(fundo);
+    } else {
+        background(fundoReserva)
+    }
+    
+    console.log(passarinho.corpo.position)
+
+    textSize(20)
+    fill(corPontuacao)
+    text("Pontuação: " +pontuacao,1050,70)
 
     Engine.update(motorDaFisica);
 
@@ -57,11 +74,13 @@ function draw() {
     caixinha1.desenha();
     caixinha2.desenha();
     porquin1.desenha();
+    porquin1.pontua();
     tronco1.desenha();
 
     caixinha3.desenha();
     caixinha4.desenha();
     porquin2.desenha();
+    porquin2.pontua();
     tronco2.desenha();
 
     caixinha5.desenha();
@@ -72,15 +91,41 @@ function draw() {
 }
 
 function mouseDragged() {
-    Matter.Body.setPosition(passarinho.corpo, {x:mouseX, y:mouseY})
+    if(estadoDoJogo !== "Jogando"){
+        Matter.Body.setPosition(passarinho.corpo, {x:mouseX, y:mouseY})
+        passarinho.trajetoria = []
+    }
+    
 }
 
 function mouseReleased() {
     estilingue.voa();
+    estadoDoJogo = "Jogando"
 }
 
 function keyPressed() {
-    if(keyCode === 32){
+    if(keyCode === 32 && passarinho.corpo.speed <1){
+        passarinho.trajetoria = []
+        Matter.Body.setPosition(passarinho.corpo, {x:370, y:230})
         estilingue.teleporte(passarinho.corpo);
+        estadoDoJogo = "Comeco"
     }
+}
+
+async function fundin() {
+    var resposta = await fetch ("https://worldtimeapi.org/api/timezone/America/Sao_Paulo")
+    var respostaJson = await resposta.json()
+    var hora = respostaJson.datetime.slice(11, 13)
+
+    if(hora >= 6 && hora <= 18){
+        //fundo de dia
+        fundoImagem = "sprites/bg.png"
+        corPontuacao = "black"
+    } else{
+        //fundo de noite
+        fundoImagem = "sprites/bg2.jpg"
+        corPontuacao = "white"
+    }
+
+    fundo = loadImage(fundoImagem)
 }

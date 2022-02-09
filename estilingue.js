@@ -21,6 +21,7 @@ class Estilingue {
         if(this.estilingue.bodyA){
             var pontoA = this.estilingue.bodyA.position
             var pontoB = this.estilingue.pointB
+
             push();
             stroke(48,22,8)
             if(pontoA.x <220){

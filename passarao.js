@@ -8,12 +8,25 @@ class Passarinho extends Base {
         
         super(x,y,50,50,opcoes)
         this.imagem = loadImage("sprites/bird.png")
+        this.fumaca = loadImage("sprites/smoke.png")
+        this.trajetoria = []
     }
 
     desenha(){
         var posicao = this.corpo.position
-        //posicao.x = mouseX;
-        //posicao.y = mouseY;
+
+        if(this.corpo.velocity.x > 10 && posicao.x > 320){
+            var posicaoPassarin = [posicao.x , posicao.y]
+            this.trajetoria.push(posicaoPassarin)
+        }
+        
+
+        for (var indice = 0; indice < this.trajetoria.length; indice++) {
+            image(this.fumaca, this.trajetoria[indice][0], this.trajetoria[indice][1])
+            
+        }
+        
+        
         super.desenha()
     }
 }

@@ -10,6 +10,7 @@ class Base {
     desenha(){
         var posicao = this.corpo.position
         var angulo = this.corpo.angle
+        
         push()
         translate(posicao.x , posicao.y)
         rotate(angulo)
